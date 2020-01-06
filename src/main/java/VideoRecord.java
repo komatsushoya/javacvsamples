@@ -23,7 +23,7 @@ import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class VideoRecord {
@@ -34,11 +34,11 @@ public class VideoRecord {
 
     public static void main(String[] args) throws Exception {
 
-        VideoReord videoReord = new VideoReord();
-        videoReord.startRecording();
+        VideoRecord videoRecord = new VideoRecord();
+        videoRecord.startRecording();
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        WebDriver driver = new ChromeDriver(capabilities);
+        WebDriver driver = new FirefoxDriver(capabilities);
         driver.get("http://www.google.com");
 
         WebElement element = driver.findElement(By.name("q"));
@@ -46,7 +46,7 @@ public class VideoRecord {
         element.submit();
         System.out.println("Page title is: " + driver.getTitle());
         driver.quit();
-        videoReord.stopRecording();
+        videoRecord.stopRecording();
     }
 
     public void startRecording() throws Exception {
@@ -60,10 +60,14 @@ public class VideoRecord {
 
         GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-        this.screenRecorder = new SpecializedScreenRecorder(gc, captureSize, new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
-                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
+        this.screenRecorder = new SpecializedScreenRecorder(gc, captureSize,
+                new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey,
+                        ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, CompressorNameKey,
+                        ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
                         Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
-                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)), null, file, "MyVideo");
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey,
+                        Rational.valueOf(30)), null, file, "MyVideo");
         this.screenRecorder.start();
 
     }
