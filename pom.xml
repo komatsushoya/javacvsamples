@@ -12,6 +12,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <repositories>
+        <!---monteを追加するためのリポジトリ-->
         <repository>
             <id>additional-repo1</id>
             <name>Alfresco Public Repository</name>
@@ -33,6 +34,16 @@
             <groupId>org.monte</groupId>
             <artifactId>monte-screen-recorder</artifactId>
             <version>0.7.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
